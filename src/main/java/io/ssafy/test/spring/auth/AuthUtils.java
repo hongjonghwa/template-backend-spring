@@ -8,8 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
-
 @Component
 public class AuthUtils {
     public User getUserOrException() throws ResponseStatusException{

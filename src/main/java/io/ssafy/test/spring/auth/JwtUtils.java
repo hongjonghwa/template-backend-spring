@@ -14,7 +14,7 @@ public class JwtUtils {
     private final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
     // @Value("${app.jwtSecret}")
-    private String jwtSecret
+    private final String jwtSecret
             = "1234567890"
             + "random str"
             + "helloworld"
@@ -24,7 +24,7 @@ public class JwtUtils {
             + "1234" ; // 최소 64자리 이상
 
     // @Value("${app.jwtExpirationMs}")
-    private int jwtExpirationMs = 1000 * 60 * 60 * 24 * 7; // 7 days
+    private final int jwtExpirationMs = 1000 * 60 * 60 * 24 * 7; // 7 days
 
     public String generateJwt(String username) {
         return Jwts.builder()

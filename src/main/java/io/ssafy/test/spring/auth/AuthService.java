@@ -3,9 +3,7 @@ package io.ssafy.test.spring.auth;
 import io.ssafy.test.spring.auth.dto.LoginRequest;
 import io.ssafy.test.spring.auth.dto.CreateUserDto;
 import io.ssafy.test.spring.auth.entities.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -17,19 +15,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
+@AllArgsConstructor
 public class AuthService {
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
-
-    @Autowired
-    JwtUtils jwtUtils;
-
-    @Autowired
-    AuthenticationManager authenticationManager;
-
-    @Autowired
-    UserRepository userRepository;
+    final PasswordEncoder passwordEncoder;
+    final JwtUtils jwtUtils;
+    final AuthenticationManager authenticationManager;
+    final UserRepository userRepository;
 
     public boolean isAvailableUsername(String username) {
         return !userRepository.existsByUsername(username);
@@ -69,9 +61,8 @@ public class AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-        String token = jwtUtils.generateJwt(customUserDetails.getUsername());
 
-        return token;
+        return jwtUtils.generateJwt(customUserDetails.getUsername());
     }
 
 }

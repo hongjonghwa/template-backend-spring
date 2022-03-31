@@ -1,6 +1,5 @@
 package io.ssafy.test.spring.todos.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.ssafy.test.spring.auth.entities.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

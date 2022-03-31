@@ -2,7 +2,7 @@ package io.ssafy.test.spring;
 
 import io.ssafy.test.spring.auth.CustomUserDetailsService;
 import io.ssafy.test.spring.auth.JwtAuthFilter;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,13 +18,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 @EnableMethodSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    CustomUserDetailsService customUserDetailsService;
-
-    @Autowired
-    JwtAuthFilter jwtAuthFilter;
+    final CustomUserDetailsService customUserDetailsService;
+    final JwtAuthFilter jwtAuthFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
